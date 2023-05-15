@@ -7,7 +7,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "employees")
@@ -16,7 +16,7 @@ public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID")
-    private Long empid;
+    private Integer empid;
 
     @Column(name = "FIRST_NAME")
     private String fname;
@@ -46,6 +46,10 @@ public class Employees {
     private Integer mgrid;
 
     @Column(name = "DEPARTMENT_ID")
-    private Integer deptid;
+    private Long deptid;
+
+    @ManyToOne
+    @JoinColumn(name="DEPARTMRNT_ID")
+    private Departments dept;
 
 }

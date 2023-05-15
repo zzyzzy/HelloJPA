@@ -50,7 +50,38 @@ public class HelloJPA03 {
             //System.out.println(avgsal);
 
             // 사원 직책수 조회
+            //jpql = "select count(jobid) from Employees e";
+            jpql = "select count(distinct jobid) from Employees e";
+            //Long cntjob = em.createQuery(jpql, Long.class).getSingleResult();
 
+            //System.out.println(cntjob);
+
+            // jobid으로 정렬후 3 페이지 조회 : 페이징 (페이지당 출력건수 : 15)
+            // setFirstResult(startpos) : 페이징 시작 위치
+            // setMaxResult(getdatacnt) : 조회할 데이터 수
+            jpql = "select e from Employees e order by jobid";
+            //List<Employees> pemps = em.createQuery(jpql, Employees.class)
+            //    .setFirstResult(30).setMaxResults(15).getResultList();
+
+            //for (Employees emp : pemps)
+            //    System.out.println(emp);
+
+
+            // 직책별 평균연봉, 사원수 조회
+            jpql = "select jobid, avg(sal), count(jobid) from Employees e group by jobid";
+            //List<Object[]> items = em.createQuery(jpql).getResultList();
+
+            //for (Object[] item : items)
+            //    System.out.println(item[0] + "/" + item[1] + "/" + item[2]);
+
+
+            // 사원이름, 직책, 부서명 조회 : join
+            //jpql = "select e.fname, e.jobid from Employees e " +
+            //       " inner join e.dept d";
+            //List<Object[]> items = em.createQuery(jpql).getResultList();
+
+            //for (Object[] item : items)
+            //    System.out.println(item[0] + "/" + item[1] + "/" + item[2]);
 
 
         } catch (Exception ex) {
