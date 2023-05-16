@@ -12,11 +12,11 @@ import java.sql.Date;
 @Entity
 @Table(name = "employees")
 @Data
-public class Employees {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID")
-    private Integer empid;
+    private Long empid;
 
     @Column(name = "FIRST_NAME")
     private String fname;
@@ -48,8 +48,9 @@ public class Employees {
     @Column(name = "DEPARTMENT_ID")
     private Long deptid;
 
-    @ManyToOne
-    @JoinColumn(name="DEPARTMRNT_ID")
-    private Departments dept;
+    @ManyToOne   // 테이블 연관 관계 = 다 : 1
+    @JoinColumn(name="department_id")
+    // department 테이블의 id 컬럼과 조인
+    private Department department;
 
 }

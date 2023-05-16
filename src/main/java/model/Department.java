@@ -10,12 +10,12 @@ import java.util.List;
 @Entity
 @Table(name = "departments")
 @Data
-public class Departments {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="DEPARTMENT_ID")
-    private Integer deptid;
+    private Long deptid;
 
     @Column(name="DEPARTMENT_NAME")
     private String dname;
@@ -25,8 +25,5 @@ public class Departments {
 
     @Column(name="LOCATION_ID")
     private Long locid;
-
-    @OneToMany(mappedBy = "dept")
-    private List<Employees> employees;
 
 }
