@@ -102,9 +102,12 @@ public class HelloJPA03 {
                System.out.println(item[0] + "/" + item[1]);
 
             // 제공된 이름, 직책, 연봉으로 사원 조회 : 동적 쿼리
-            String fname = "";
-            String jobid = "";
-            Integer sal = 0;  // null 체크를 위해 클래스형으로 선언
+            // 직책이 IT_PROG 인 사원 조회
+            // 연봉이 10000이상인 사원 조회
+            // 직책이 IT_PROG이고 연봉이 6000 이상인 사원 조회
+            String fname = null;
+            String jobid = "IT_PROG";
+            Integer sal = 6000;  // null 체크를 위해 클래스형으로 선언
 
             jpql = "select e from Employee e";
             List<String> cndtns = new ArrayList<>();  // 조건절 저장 변수
