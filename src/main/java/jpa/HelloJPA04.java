@@ -122,20 +122,19 @@ public class HelloJPA04 {
             // 서브쿼리1 : 평균연봉보다 작게 받는 사원들 조회
             cb = em.getCriteriaBuilder();
             query = cb.createQuery(Employee.class);
+            Root<Employee> e = query.from(Employee.class);
 
             // 하위 쿼리
-            /*Root<Employee> s = query.from(Employee.class);
             Subquery<Double> qryAsal = query.subquery(Double.class);
-            qryAsal.select( cb.avg(s.get("sal")) );*/
+            Root<Employee> se = qryAsal.from(Employee.class);
+            qryAsal.select(cb.avg(se.get("sal")));
 
             // 주 쿼리
-            /*Root<Employee> m = query.from(Employee.class);
-            query.select(m);
-            query.where(cb.lt(m.<Double>get("sal"), qryAsal) );
+            query.select(e).where(cb.lt(e.get("sal"), qryAsal));
             List<Employee> emps = em.createQuery(query).getResultList();
 
             for (Employee emp : emps)
-                System.out.println(emp);*/
+                System.out.println(emp);
 
             // 서브쿼리2 : 부서번호가 60번인 사원들의 이름, 직책, 부서명 조회
 
@@ -163,7 +162,7 @@ public class HelloJPA04 {
             // 직책이 IT_PROG 인 사원 조회
             // 연봉이 10000이상인 사원 조회
             // 직책이 IT_PROG이고 연봉이 6000 이상인 사원 조회
-            String fname = null;
+            /*String fname = null;
             String jobid = "IT_PROG";
             Integer sal = 6000;
 
@@ -180,14 +179,13 @@ public class HelloJPA04 {
             if (sal != null)
                 predicates.add(cb.ge(e.get("sal"), sal));
 
-            System.out.println( predicates.toArray(new Predicate[0]) );
-
             query.where(predicates.toArray(new Predicate[0]));
+            //query.where(cb.or(predicates.toArray(new Predicate[0])));
 
             List<Employee> emps = em.createQuery(query).getResultList();
 
             for (Employee emp : emps)
-                System.out.println(emp);
+                System.out.println(emp);*/
 
 
         } catch (Exception ex) {
