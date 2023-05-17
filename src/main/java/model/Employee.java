@@ -54,7 +54,7 @@ public class Employee {
     private Long deptid;
 
     @ManyToOne   // 테이블 연관 관계 = 다 : 1
-    @JoinColumn(name="department_id")
+    @JoinColumn(name="department_id", insertable = false, updatable = false)
     // department 테이블의 id 컬럼과 조인
     private Department department;
 
